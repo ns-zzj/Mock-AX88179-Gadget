@@ -165,10 +165,10 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now ax88179-gadget
 ```
 
-Verified from systemd: the service starts, the host gets an address and
-can browse. **Booting with the service enabled has not been verified yet** —
-in particular the ordering between the TAP appearing, the udev rule firing
-and dnsmasq rebinding.
+Verified from systemd: the service comes up on boot, the host gets an
+address and can browse — provided nothing is attached to the gadget port
+while the board boots (see the warning at the top). The udev rule then
+rebinds dnsmasq as soon as the TAP interface appears.
 
 ## How it works
 
