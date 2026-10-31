@@ -1,0 +1,8 @@
+# build output
+ax88179_gadget
+*.o
+*.log
+*.pcap
+
+# kept outside the repository
+NOTES.md

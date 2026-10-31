@@ -1,0 +1,7 @@
+# The tap only appears when a host is plugged in, and dnsmasq binds its
+# DHCP/DNS sockets to the interface by ifindex.  When the tap is (re)created
+# that index changes, so restart dnsmasq whenever the interface shows up.
+#
+# --no-block matters: udev runs RUN synchronously and kills the command on
+# timeout, which would leave dnsmasq half restarted.
+ACTION=="add", SUBSYSTEM=="net", KERNEL=="ax88179", RUN+="/bin/systemctl --no-block restart dnsmasq"

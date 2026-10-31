@@ -1,0 +1,16 @@
+[Unit]
+Description=AX88179 USB Ethernet gadget
+After=network.target
+
+[Service]
+Type=simple
+# raw_gadget is usually a module.  Without it /dev/raw-gadget does not
+# exist and every start fails; the leading '-' keeps this from failing
+# when the driver is built into the kernel instead.
+ExecStartPre=-/sbin/modprobe raw_gadget
+ExecStart=/usr/local/bin/ax88179_gadget
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
